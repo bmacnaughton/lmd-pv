@@ -8,12 +8,12 @@
  * Please see the file /wire/config.php which contains all configuration options you may
  * specify here. Simply copy any of the configuration options from that file and paste
  * them into this file in order to modify them.
- * 
+ *
  * SECURITY NOTICE
  * In non-dedicated environments, you should lock down the permissions of this file so
  * that it cannot be seen by other users on the system. For more information, please
  * see the config.php section at: https://processwire.com/docs/security/file-permissions/
- * 
+ *
  * This file is licensed under the MIT license
  * https://processwire.com/about/license/mit/
  *
@@ -38,7 +38,7 @@ if(!defined("PROCESSWIRE")) die();
  * @var bool
  *
  */
-$config->debug = false;
+$config->debug = true;
 
 
 /*** INSTALLER CONFIG ********************************************************************/
@@ -46,48 +46,48 @@ $config->debug = false;
 
 /**
  * Installer: Database Configuration
- * 
+ *
  */
 $config->dbHost = 'localhost';
 $config->dbName = 'processvue_pw';
-$config->dbUser = 'root';
-$config->dbPass = '';
+$config->dbUser = 'admin';
+$config->dbPass = 'pwwadmin';
 $config->dbPort = '3306';
 
 /**
- * Installer: User Authentication Salt 
- * 
+ * Installer: User Authentication Salt
+ *
  * Must be retained if you migrate your site from one server to another
- * 
+ *
  */
-$config->userAuthSalt = '9f164d0f53599e9eb400123a32b5a1fb'; 
+$config->userAuthSalt = '9f164d0f53599e9eb400123a32b5a1fb';
 
 /**
  * Installer: File Permission Configuration
- * 
+ *
  */
 $config->chmodDir = '0755'; // permission for directories created by ProcessWire
-$config->chmodFile = '0644'; // permission for files created by ProcessWire 
+$config->chmodFile = '0644'; // permission for files created by ProcessWire
 
 /**
  * Installer: Time zone setting
- * 
+ *
  */
-$config->timezone = 'Europe/Berlin';
+$config->timezone = 'America/Los_Angeles';
 
 /**
  * Installer: Unix timestamp of date/time installed
- * 
+ *
  * This is used to detect which when certain behaviors must be backwards compatible.
  * Please leave this value as-is.
- * 
+ *
  */
 $config->installed = 1489277913;
 
 
 /**
  * Installer: HTTP Hosts Whitelist
- * 
+ *
  */
-$config->httpHosts = array('processvue.localdev', 'www.processvue.localdev');
+$config->httpHosts = array('pv', 'pv.com', 'www.pv.com');
 

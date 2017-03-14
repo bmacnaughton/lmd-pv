@@ -30,7 +30,8 @@ module.exports = {
     proxyTable: {
       // proxy all requests starting with /api to jsonplaceholder
       '/api': {
-        target: 'http://www.processvue.localdev',
+        //target: 'http://www.processvue.localdev',
+        target: 'http://pv',
         changeOrigin: true
       }
     },

@@ -4,7 +4,9 @@ import Meta from 'vue-meta'
 import { app } from '@/app'
 
 import PwHome from '@/components/PwHome'
+import PwManage from '@/components/PwManage'
 import PwDefault from '@/components/PwDefault'
+import UserRegister from '@/components/user-register'
 
 Vue.use(Router)
 Vue.use(Meta)
@@ -16,6 +18,16 @@ var router = new Router({
       path: '/',
       name: 'Home',
       component: PwHome
+    },
+    {
+      path: '/manage',
+      name: 'manage',
+      component: PwManage
+    },
+    {
+      path: '/register',
+      name: 'user-register',
+      component: UserRegister
     },
     {
       name: 'default',
@@ -30,6 +42,13 @@ router.beforeEach((to, from, next) => {
     app.$store.dispatch('loading', true)
   }
   next()
+})
+
+router.afterEach((to, from) => {
+  if (app) {
+    console.log('afterEach')
+    app.$store.dispatch('loading', false)
+  }
 })
 
 export default router

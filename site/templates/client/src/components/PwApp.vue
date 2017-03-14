@@ -49,12 +49,12 @@
         return ((url.indexOf(':') > -1 || url.indexOf('//') > -1) && this.checkDomain(window.location.href) !== this.checkDomain(url))
       },
       linkHandler(e) {
-        let $typ = e.target.closest('.typography')
-        let $link = e.target.closest('a')
-        if (!$typ || !$link) return
-
+        // let $typ = e.target.closest('.typography')
+        let $link = e.target
+        if (!$link) return
         let linkHref = $link.getAttribute('href')
-        if (this.linkIsExternal(linkHref)) return
+        // allow default to occur if it is external
+        if (!linkHref || this.linkIsExternal(linkHref)) return
 
         e.preventDefault()
         router.push({ path: linkHref })
@@ -107,19 +107,20 @@
 
   }
 
-    .nav__item {
-      display: inline-block;
-      margin: 0 20px;
-    }
+  .nav__item {
+    display: inline-block;
+    margin: 0 20px;
+  }
 
-      .nav__link {
-        color: #000;
-        text-transform: capitalize;
-        text-decoration: none;
-        .nav__item.-active & {
-          font-weight: bold;
-        }
-      }
+  .nav__link {
+    color: #000;
+    text-transform: capitalize;
+    text-decoration: none;
+    cursor: pointer;
+    &.-active {
+      font-weight: bold;
+    }
+  }
 
   .loader {
     position: fixed;
