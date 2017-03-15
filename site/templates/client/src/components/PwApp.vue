@@ -53,10 +53,11 @@
         let $link = e.target
         if (!$link) return
         let linkHref = $link.getAttribute('href')
-        // allow default to occur if it is external
+        // allow default to occur if it is external or it doesn't have an href.
         if (!linkHref || this.linkIsExternal(linkHref)) return
 
         e.preventDefault()
+        console.log(linkHref)
         router.push({ path: linkHref })
       }
     },

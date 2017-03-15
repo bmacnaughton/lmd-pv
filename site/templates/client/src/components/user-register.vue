@@ -75,6 +75,9 @@ button.success {
           this.success = response.data.status === 'success'
         })
       }
+    },
+    mounted: function() {
+      this.$store.dispatch('loading', false)
     }
   }
 </script>

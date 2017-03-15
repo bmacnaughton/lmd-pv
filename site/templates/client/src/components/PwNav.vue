@@ -36,6 +36,7 @@
       navs() {
         if (!(this.navData.length)) return
         // remove home page from array
+        console.log(this.navData)
         return this.navData.slice(1, this.navData.length)
       }
     }
