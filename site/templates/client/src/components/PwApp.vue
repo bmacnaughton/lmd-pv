@@ -57,7 +57,6 @@
         if (!linkHref || this.linkIsExternal(linkHref)) return
 
         e.preventDefault()
-        console.log(linkHref)
         router.push({ path: linkHref })
       }
     },

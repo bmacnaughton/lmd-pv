@@ -46,7 +46,7 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach((to, from) => {
   if (app) {
-    console.log('afterEach')
+    // console.log('afterEach')
     app.$store.dispatch('loading', false)
   }
 })
