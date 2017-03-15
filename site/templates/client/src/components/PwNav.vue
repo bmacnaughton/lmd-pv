@@ -6,7 +6,7 @@
         class="nav__item nav__link"
         tag="li"
         active-class="-active"
-        :href="nav.httpUrl"
+        :href="nav.url"
         :to="nav.url"
         :key="nav.name"
         v-for="nav in navs">
