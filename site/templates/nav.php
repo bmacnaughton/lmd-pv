@@ -1,13 +1,20 @@
 <?php
 
-require_once './inc/rest.php';
+require_once './inc/ajax-request.php';
 require_once './inc/pagefields.php';
 
 // set vars with the default output
 $statuscode = 200;
 $response = [];
 
-if (Rest\Request::is('get')) {$root = $pages->get("/");
+$request = new ajax\Request();
+
+if (!$request->is_good()) {
+    return $request->echoResponse();
+}
+
+if ($request->method('GET')) {
+  $root = $pages->get("/");
   $p = null;
   $urlSegmentsLength = count($input->urlSegments());
 
@@ -25,24 +32,19 @@ if (Rest\Request::is('get')) {$root = $pages->get("/");
       'queries' => $input->get->getArray(),
       'fld_include_all' => false
     ]);
+
+    // enable debug mode
+    if ($input->get('debug') && $config->debug) return;
+
     $response = $pageFields->getPageFields($p);
+    return $request->echoResponse($response);
   } else {
     // page does not exist
-    $response['error'] = 'The page does not exist';
-    $statuscode = 404; // Not Found (see /site/templates/inc/Rest.php)
+    return $request->echoErrorResponse(404, ['error' => 'Page not found']);
   }
 } else {
   // Not a get request
   $response['error'] = 'Wrong request';
   $statuscode = 404; // Not Found (see /site/templates/inc/Rest.php)
+  return $request->echoErrorResponse(400, ['error' => 'Invalid request method']);
 }
-
-// enable debug mode
-if ($input->get('debug') && $config->debug) return;
-
-// render the response and body
-http_response_code($statuscode);
-header(Rest\Header::mimeType('json'));
-
-// output everything
-echo json_encode($response);
