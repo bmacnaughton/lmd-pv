@@ -56,23 +56,32 @@ button.success {
 
     methods: {
       createAccount() {
-        axios.post('/api', {
-          firstName: this.firstName,
-          lastName: this.lastName,
-          company: this.company,
-          address: this.address,
-          postalCode: this.postalCode,
-          city: this.city,
-          state: this.state,
-          country: this.country,
-          landline: this.landline,
-          mobile: this.mobile,
-          email: this.email,
-          password: this.password
+        axios({
+          method: 'post',
+          url: '/api/register/',
+          headers: {'X-Requested-With': 'XMLHttpRequest'},
+          data: {
+            firstName: this.firstName,
+            lastName: this.lastName,
+            company: this.company,
+            address: this.address,
+            postalCode: this.postalCode,
+            city: this.city,
+            state: this.state,
+            country: this.country,
+            landline: this.landline,
+            mobile: this.mobile,
+            email: this.email,
+            password: this.password
+          }
         })
         .then(response => {
           console.log(response)
-          this.success = response.data.status === 'success'
+          this.success = true
+        })
+        .catch(error => {
+          console.log(error)
+          this.success = false
         })
       }
     },
