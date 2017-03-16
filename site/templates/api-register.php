@@ -10,6 +10,7 @@ $request = new ajax\Request(['ajax-only' => true]);
 
 wire('log')->save('ajax', 'seeing a ' . $request->method());
 
+// if it isn't good return whatever error was detected.
 if (!$request->is_good()) {
     return $request->echoResponse();
 }

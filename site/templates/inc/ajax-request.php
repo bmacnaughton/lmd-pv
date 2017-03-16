@@ -114,6 +114,8 @@ class Request {
         header(Request::mime_type_header($mime));
     }
 
+    // return the existing status and data. success or error
+    // status depends on $this->status.
     public function echoResponse($data = []) {
         http_response_code($this->status);
         $this->set_mime_type('json');
